@@ -1,0 +1,29 @@
+name: Compila firmware Marlin
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clona repository Marlin
+        uses: actions/checkout@v2
+
+      - name: Compila firmware Marlin
+        uses: marlinfirmware/marlin-build@v1
+        with:
+          type: ArduinoMega2560
+          printer: Ender-3
+          bed_size: 220x220x250
+          extruder: 1
+          print_settings: |
+            [print]
+            z_offset = -0.2
+
+      - name: Salva file .bin compilato
+        run: |
+          cp Marlin.ino.bin /var/www/html/Marlin.bin
