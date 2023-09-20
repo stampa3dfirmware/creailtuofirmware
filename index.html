@@ -9,7 +9,10 @@
     <label for="modello">Modello stampante</label>
     <input type="text" name="modello" id="modello">
     <label for="scheda">Scheda di controllo</label>
-    <input type="text" name="scheda" id="scheda">
+    <select name="scheda" id="scheda">
+      <option value="BOARD_BTT_SKR_V1_3">BOARD_BTT_SKR_V1_3</option>
+      <option value="BOARD_BTT_SKR_V1_4">BOARD_BTT_SKR_V1_4</option>
+    </select>
     <label for="hotend">Hotend</label>
     <input type="text" name="hotend" id="hotend">
     <label for="driver">Driver di movimento</label>
@@ -22,12 +25,15 @@
       <option value="si">Si</option>
     </select>
     <label for="distanza_x">Distanza tra X</label>
-    <input type="number" name="distanza_x" id="distanza_x" min="0" max="255" disabled>
+    <input type="number" name="distanza_x" id="distanza_x" min="-255" max="255">
     <label for="distanza_y">Distanza tra Y</label>
-    <input type="number" name="distanza_y" id="distanza_y" min="0" max="255" disabled>
+    <input type="number" name="distanza_y" id="distanza_y" min="-255" max="255">
+    <label for="distanza_da_x">Distanza da X</label>
+    <input type="number" name="distanza_da_x" id="distanza_da_x" min="-255" max="255" disabled>
     <input type="submit" value="Invia">
   </form>
 </body>
 </html>
+
 
 
