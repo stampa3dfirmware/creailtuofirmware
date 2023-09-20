@@ -14,7 +14,19 @@
     <input type="text" name="hotend" id="hotend">
     <label for="driver">Driver di movimento</label>
     <input type="text" name="driver" id="driver">
+    <label for="ambiente">Ambiente di lavoro</label>
+    <input type="text" name="ambiente" id="ambiente">
+    <label for="bltouch">BLTouch</label>
+    <select name="bltouch" id="bltouch">
+      <option value="no">No</option>
+      <option value="si">Si</option>
+    </select>
+    <label for="distanza_x">Distanza tra X</label>
+    <input type="number" name="distanza_x" id="distanza_x" min="0" max="255">
+    <label for="distanza_y">Distanza tra Y</label>
+    <input type="number" name="distanza_y" id="distanza_y" min="0" max="255">
     <input type="submit" value="Invia">
   </form>
 </body>
 </html>
+
