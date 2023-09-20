@@ -85,7 +85,59 @@
     <label for="distanza_y">Distanza tra Y</label>
     <input type="number" name="distanza_y" id="distanza_y" min="-255" max="255">
     <input type="submit" value="Invia">
-  </form>
+     <label for="bed_size">Dimensioni della piattaforma di stampa</label>
+        <input type="text" name="bed_size" id="bed_size">
+
+        <label for="extruder">Tipo di estrusore</label>
+        <input type="text" name="extruder" id="extruder">
+
+        <label for="print_settings">Impostazioni di stampa</label>
+        <textarea name="print_settings" id="print_settings" cols="30" rows="10"></textarea>
+
+        <input type="submit" value="Compila firmware">
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#submit").click(function() {
+                // Raccogli le informazioni degli utenti
+                var printer = $("#printer").val();
+                var bed_size = $("#bed_size").val();
+                var extruder = $("#extruder").val();
+                var print_settings = $("#print_settings").val();
+
+                // Compila il firmware Marlin
+                $.ajax({
+                    url: "compile.php",
+                    method: "post",
+                    data: {
+                        printer: printer,
+                        bed_size: bed_size,
+                        extruder: extruder,
+                        print_settings: print_settings,
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        if (data.success) {
+                            // Salva il file .bin compilato in un server web
+                            var file = fs.readFileSync(data.file_path);
+                            fs.writeFileSync("/var/www/html/Marlin.bin", file);
+
+                            // Invia il file .bin al browser
+                            window.location.href = "/Marlin.bin";
+                        } else {
+                            alert(data.error);
+                        }
+                    },
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+</form>
 </body>
 </html>
 
